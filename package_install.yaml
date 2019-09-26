@@ -1,0 +1,21 @@
+---
+- hosts: all
+  #  remote_user: knanda
+  # become: yes
+  # become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  #vars:
+  #  username: knanda
+  tasks:
+  - name: install httpd
+    yum:
+      name: nginx
+      state: latest
+    notify:
+    - startservice
+  handlers:
+  - name: startservice
+    service:
+      name: nginx
+      state: restarted
