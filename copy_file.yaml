@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - name: "Copy file local to remote"
+    copy:
+      src: /tmp/docker
+      dest: /tmp/
+      owner: docker
+      group: docker
+      #diretory: raw
