@@ -1,0 +1,21 @@
+##To generate passwd encrypt 
+####mkpasswd --method=sha-512
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  remote_user: root
+  tasks:
+  - name: "add user"
+    user:
+      name: nanda
+      password: '$6$4zDgNw/O6tyKGjV$whKxQ/cHXOFrEekxiX0TcCpTUOmh4SAAp4H5fFpBHUCMhhrn4wyCPR8eobqNKoXycC9LX565Evsf4FzyfOC6b.'
+      state: present
+      shell: /bin/bash
+      create_home: yes
+      home: /home/nanda
+      groups:
+         - sudo
+         - docker
