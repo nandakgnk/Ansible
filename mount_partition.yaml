@@ -27,11 +27,3 @@
       fstype: xfs
       opts: defaults
       state: mounted
-
-  - name: "Add remote partion"
-    mount:
-      path: /data
-      src: /dev/vgdata/lvdata
-      fstype: xfs
-      opts: defaults
-      state: mounted
