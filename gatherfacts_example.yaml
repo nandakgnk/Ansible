@@ -1,0 +1,16 @@
+### Ansible gather_facts
+#
+#To see all hosts
+$ansible all --list-hosts
+
+# To see gathered facts
+$ ansible all -m setup 
+
+#to grep particular field
+$ ansible all -m setup | grep ipv4
+
+#Use filter to grep the results
+$ansible all -m setup -a 'filter=*ipv4*'
+
+# To capture facts in afile  
+$ansible all -m setup --tree facts 
