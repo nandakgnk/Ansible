@@ -1,0 +1,12 @@
+---
+- hosts: web
+  connection: ssh
+  tasks:
+  - name: "content list"
+    copy:
+      dest: /tmp/an2
+      content: "This is my content Add new line"
+    register: index_file
+  - name: "debug list"
+    debug:
+       msg: "{{ index_file.checksum }}"
