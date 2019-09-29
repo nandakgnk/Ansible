@@ -1,0 +1,14 @@
+###Ansbile scripts for understanding vars usage
+---
+- hosts: '{{ host }}'
+  connection: ssh
+  gather_facts: '{{ gfacts }}'
+  vars:
+    host: web
+    gfacts: yes
+    pckg: nginx
+  tasks:
+  - name: "install package"
+    yum:
+      name: '{{ pckg }}'
+      state: latest
