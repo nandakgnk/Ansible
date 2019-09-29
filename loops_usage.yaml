@@ -1,0 +1,18 @@
+##usage_loops
+## Ansible script to use loops
+---
+- hosts: '{{ host }}'
+  #  become: yes
+  # become_method: sudo
+  gather_facts: '{{ gfacts }}'
+  vars:
+    host: web
+    gfacts: yes
+  tasks:
+  - name: "install package on loops"
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - nano
+      - nginx
