@@ -1,0 +1,19 @@
+## Ansible script to mount /data partition in Linux client
+## Need to create pv, vg and lv vol before runnnig the script in clinet
+## state: mounted to mount partiton
+## state: present will add entry in fstab and will not mount partition
+---
+- hosts: all
+  #  become: true
+  # become_method: sudo
+  connection: ssh
+  gather_facts: true
+  #  remote_user: root
+  tasks:
+  - name: "Add remote partion"
+    mount:
+      path: /data
+      src: /dev/vgdata/lvdata
+      fstype: xfs
+      opts: defaults
+      state: mounted
