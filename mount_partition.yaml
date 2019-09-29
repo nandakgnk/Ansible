@@ -10,6 +10,24 @@
   gather_facts: true
   #  remote_user: root
   tasks:
+  - name: "vg creation"
+    lvg:
+      vg: vg_data
+      pvs: /dev/sdb
+      pesize: 32
+  - name: "lv creation"
+    lvol:
+      vg: vg_data
+      lv: lv_data
+      size: 500M
+  - name: "mount partiton"
+    mount:
+      path: /data
+      src: /dev/vg_data/lv_data
+      fstype: xfs
+      opts: defaults
+      state: mounted
+
   - name: "Add remote partion"
     mount:
       path: /data
