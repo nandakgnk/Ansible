@@ -11,7 +11,7 @@
   gather_facts: true
   tasks:
     -
-      name: "add user"
+      name: "Get fstab information from remote machine"
       command: "cat /etc/fstab"
   vars:
     - ansible_ssh_pass: user_login_pass
