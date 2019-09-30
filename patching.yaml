@@ -1,0 +1,27 @@
+#ansible-vault create testfile.yaml  ## To create encypt playbook file to hide passwords
+#ansible-playbook testile.yaml –ask-vault-pass  ### To run encrypt playbook, it prompts for the decrypt key
+#nsible-vault edit testfile.yaml ## To edit encrypt playbook file 
+##Kepp all prerequisite commands in /etc/ansible/playbooks/conf_script.sh
+---
+- hosts: web
+  remote_user: username
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: true
+  tasks:
+    -
+      name: "add user"
+      command: "cat /etc/fstab"
+  vars:
+    - ansible_ssh_pass: user_login_pass
+    - ansible_sudo_pass: user_sudo_pass
+  tasks:
+    - name: "add user"
+      script: "/etc/ansible/playbooks/conf_script.sh"
+      register: output_host
+      args:
+        executable: /bin/bash
+    - debug:
+          var: output_host.stdout_lines
+
