@@ -169,9 +169,23 @@ ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
                         
     _____________________________________________________________________________________            
       
+      ----> extra variables: 
+       ---
+       - hosts: localhost
+         #x value not define so you will get error, u may pass value using -e while executing the script, please see command example.
+         gather_facts: yes
+         tasks: 
+           debug:
+             var: x
       
+        #ansible-playbook playbook.yml -e "x=56"
         
-    
+        Three different types of variables in different forms. 
+           -> scalar
+           -> sequence
+           -> Map
+           -> files with variables. 
+           
   
   
 
