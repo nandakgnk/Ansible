@@ -188,5 +188,30 @@ ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
            
   
 ###############
+  Comparision Operator, When checked it only return true or flase. 
+  
+  ---
+  - name: Working with Comp Operator
+    hosts: all
+    gather_facts: yes
+    vars: 
+       x: 7
+       y: 10
+     tasks:
+      -debug: 
+          msg:
+            - "The value of x is: {{ x }} and value of y is: {{ y }}
+            - "x == y: {{ x == y}" ##Return: "x == y: False"
+            - "x != y: {{ x != y}" ##Return: "x != y: True"
+            - "x < y: {{ x < y}" 
+            - "x > y: {{ x > y}"
+            - x <= y: {{ x <= y}"
+             - "x => y: {{ x => y }}"
+             
+    ___________________________________________________________
+    
+    
+            
+           
   
 
