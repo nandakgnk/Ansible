@@ -34,6 +34,11 @@ ansible -i prod_inv -m shell -a "free -m"
 ansible [-i prod_inv]  server_name:group1:group2 -m module [-a argument_value]
 ##############################################
 
+Ansible Downloading a file using fetch module .
+
+file.txt will be downloaded to current working dir on ansible Master node.
+ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
+
 To see Module infomration
 ansible doc -l | grep -i shell <module>
 
@@ -46,4 +51,10 @@ echo 'fork = 5' > ansible.cfg
 -> Ansible by default execute jobs parallel (Based on fork value no of parallel server depends). To make job execute serially, change fork value to '1' fork = 1. 
 
 ###########
+
 ansible db -m copy -a "content='File content' dest=/tmp/hello.txt"
+ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
+#when flat = yes you should mentione the downloaded file name.
+#ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo/{{ inventory_hostname }}_demo_txt flat=yes" 
+
+
