@@ -62,5 +62,58 @@ ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
 #ansible host1 -m setup -a "filter=ansible_mounts"
 #ansible groupname -m setup 
 
-
+-> Types of Facts
+  -> Custom facts (To find Git version,httpd verison)
+  -> Default facts
+  
+  
+  Steps to create Custom facts. 
+  
+ -> create /etc/ansible/facts.d on Managed Nodes
+  -> inside facts.d place once or more custom facts file with extenstion as .fact
+   -> The output of fact file should be a json
+    -> The fact file should have execution permission. 
+    -> login to remote node server(client1) 2. create facts.d in /etc/ansible/facts.d 3. create file with .fact extention (git_ver.fact) and add below lines.
+    #########################################################
+        > #!/bin/bash
+        > git_ver=$(git --version | awk 'NR ==1 {print $3}') and save exit the file 
+        > http_ver=$(httpd --version | awk 'NR ==1 {print $3}') and save exit the file with chmod 755 permission
+        > cat << EOF 
+            {
+            "GIT_Version" : "$git_ver" 
+            "HTTPD_Version" : "$http_ver" 
+          }
+          EOF
+      ####################################################
+      Custom facts save under ansible_local
+      #ansible hosts1 -m setup -a 'filter=ansible_local'
+      
+      -> Debug module
+         
+         --- 
+         - name: This is ssimpel to understand debug moduel
+           hosts: localhost
+           tasks: 
+           - name: To check debug
+             #- debug: msg="Welcome to the playbook"
+             debug:
+             msg: "Welcome to Ansible"
+             -------------OR------------
+             
+           - name: This is ssimpel to understand debug moduel
+           hosts: localhost
+           tasks: 
+           - name: To check debug
+             debug:
+               msg: 
+                - "Welcome to Ansible"
+                - "These are basic concept"
+                - "Check another heading"
+                
+      
+      
+        
+    
+  
+  
 
