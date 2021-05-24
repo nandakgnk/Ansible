@@ -109,7 +109,65 @@ ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
                 - "Welcome to Ansible"
                 - "These are basic concept"
                 - "Check another heading"
-                
+            --------------------------------
+           - name: This is ssimpel to understand debug moduel
+           hosts: localhost
+           tasks: 
+           - name: To check debug
+             debug:
+               msg: "The hostname is: {{ inventory_hostname }}" #default inv variable, To print info with meassage use debug with 'msg'.
+               var: inventory_hostname  # To just print variable without message. just to print only 'variable info use 'var' key.
+           ------------------------------------------------    
+           - name: This is ssimpel to understand debug moduel
+           hosts: localhost
+           tasks: 
+           - name: To check debug
+             debug:
+               msg: "Welcome to Ansible"      
+           - name: To check debug
+             debug:
+               msg: "Welcome to Ansible - 2"
+               #ansible-playbook plabookname
+-> Debug Module .. Read and Print Variable 
+        ---
+        - hosts: localhost
+          vars:
+            x: 30
+            my_name: "Narendra"
+            #to use interactive variable: 
+            vars_prompt:
+               name: uname
+               prompt: Enter the username
+            tasks: 
+            - debug: 
+               msg: 
+                 - "The x value is: {{ X }}"
+                 - "The anme is: {{ my_name }}"
+                 - "The uname is: {{ uname }}"
+               ---------------------------------------------------
+               -> Debug Module .. Read and Print Variable 
+        ---
+        - hosts: localhost
+          vars:
+            x: 30
+            my_name: "Narendra"
+            #to use interactive variable: 
+            vars_prompt:
+               name: uname1
+               prompt: Enter the username
+               private: no
+               name: password1
+               prompt: Enter password
+               private: yes #will not display entered characters.
+            tasks: 
+            - debug: 
+               msg: 
+                 - "The x value is: {{ X }}"
+                 - "The anme is: {{ my_name }}"
+                 - "The uname is: {{ uname }}"
+                 - The value of uname1 is: "{{ uname }}" and password is: "{{ password1 }}"
+                        
+    _____________________________________________________________________________________            
       
       
         
