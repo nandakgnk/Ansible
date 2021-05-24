@@ -12,3 +12,8 @@ host_key_checking = False
 #ansible web -m ping  # To test web group servers
 #ansible web:oracle -m ping # to test 2 group servers at a time (web and Oracle, No need to use all as explicit mention group)
 
+To explict create ansible.cfg, Create it in your home di with .ansible.cfg
+#cd ~/ touch .ansible.cfg
+
+ansible -i inventory <servers/group/host> -m setup 
+ansible -i inventory <servers/group/host> -m shell -a "uptime"
