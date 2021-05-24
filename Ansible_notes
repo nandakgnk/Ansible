@@ -57,4 +57,10 @@ ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo"
 #when flat = yes you should mentione the downloaded file name.
 #ansible db -m fetch -a "src='/home/user'/file.txt dest=./demo/{{ inventory_hostname }}_demo_txt flat=yes" 
 
+-> Ansible Facts are nothing but infomration about Managed Nodes like OS distro, release, procecssor, python etc
+#ansible host1 -m setup 
+#ansible host1 -m setup -a "filter=ansible_mounts"
+#ansible groupname -m setup 
+
+
 
