@@ -1,0 +1,14 @@
+#ansible all -m ping 
+#ansible all -m ping -i inventory
+####Diable Host checking
+#export Ansible_Host_Key_Checking=False
+
+#Add below line in Ansible.cfg
+#cat Ansible.cfg | grep -i host_key
+[default]
+host_key_checking = False
+## ansible ser1:ser2:ser3: -m ping
+
+#ansible web -m ping  # To test web group servers
+#ansible web:oracle -m ping # to test 2 group servers at a time (web and Oracle, No need to use all as explicit mention group)
+
