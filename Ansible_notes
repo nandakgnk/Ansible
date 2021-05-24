@@ -33,3 +33,17 @@ ansible -i prod_inv -m shell -a "free -m"
 ----------------------------------------------------------
 ansible [-i prod_inv]  server_name:group1:group2 -m module [-a argument_value]
 ##############################################
+
+To see Module infomration
+ansible doc -l | grep -i shell <module>
+
+->Execute the below command to seee to which location the python modules are shared. under home dir .
+->ansible folder will be created inside it you may see the Loaded python module. once the command executed
+#ANSIBLE_KEEP_REMOTE_FILES=1 ansible -i prod_inv -m shell -a "uptime"
+
+#Add/Edit fork value to execute your ansible script parallel, usually it will be 5.
+echo 'fork = 5' > ansible.cfg 
+-> Ansible by default execute jobs parallel (Based on fork value no of parallel server depends). To make job execute serially, change fork value to '1' fork = 1. 
+
+###########
+ansible db -m copy -a "content='File content' dest=/tmp/hello.txt"
