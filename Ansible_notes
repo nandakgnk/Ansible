@@ -17,3 +17,19 @@ To explict create ansible.cfg, Create it in your home di with .ansible.cfg
 
 ansible -i inventory <servers/group/host> -m setup 
 ansible -i inventory <servers/group/host> -m shell -a "uptime"
+ansible [-i prod_inv]  server_name:group1:group2 -m module [-a argument_value]
+
+###########################################################
+ansible all -m ping
+ansible db:web_server -m ping
+###################################
+ansible db:web_server -m ping
+ansible db:web_server -m shell -a "free -m"
+
+###################################
+
+ansible -i prod_inv -m shell -a "uptime"
+ansible -i prod_inv -m shell -a "free -m"
+----------------------------------------------------------
+ansible [-i prod_inv]  server_name:group1:group2 -m module [-a argument_value]
+##############################################
