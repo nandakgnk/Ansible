@@ -1,0 +1,38 @@
+# Error Handling
+# Ansible normally has defaluts that make sure to check the return codes
+#   of command/modules and it fails if return code is non-zero 
+# ignore_error=yes
+---
+- hosts: localhost
+  gather_facts: yes
+  tasks: 
+  - name: to run ls 
+    command: "ls /hom"
+    ignore_error: yes 
+    register: tmp_out 
+  - name: to print value
+    debug: 
+        var: tmp_out 
+
+###############
+---
+- hosts: localhost
+  gather_facts: yes
+  tasks: 
+  - command: "ls /home"
+    register: tmp_out
+    failed_when: tmp_out.rc==0
+   - debug: 
+        var: tmp_out 
+
+##############
+
+---
+- hosts: localhost
+  gather_facts: yes
+  tasks: 
+  - command: "ls /home"
+    register: tmp_out
+    fail: 
+       msg: "Failed because rc is not equal to 0"
+   when:  tmp_out==0
