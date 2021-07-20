@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - debug:
+      msg: "This is a first task"
+    tags:
+       - first
+       - common
+       - never
+  - debug:
+      msg: "This is a second task"
+    tags: second
+  - debug:
+      msg: "This is a third task"
+    tags: third
+  - debug:
+      msg: "This is a fourth task"
+    tags: fourth
+
+#never will never execute in list tags until it was explictly mention
+#ansible-playbook palybook.yml --list-tags #it will not display never block
+#ansible-playbook palybook.yml --tags first #as called explict it will execute
