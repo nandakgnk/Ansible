@@ -1,0 +1,22 @@
+#Tags:
+#### Tags are useful to execute/skip required tasks from number of tasks. 
+
+---
+- hosts: localhost
+  gather_facts: false
+  tasks: 
+  - debug: 
+            msg: "This is a first task"
+    tags: first
+  - debug: 
+            msg: "This is a second task"
+    tags: second
+  - debug: 
+            msg: "This is a third task"
+    tags: third   
+  - debug: 
+            msg: "This is a fourth task"
+    tags: fourth
+     
+#To run spefic tasks, mention the tag names. 
+#ansible-playbook tags_test.yml --tags first,fourth 
