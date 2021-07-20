@@ -20,3 +20,4 @@
      
 #To run spefic tasks, mention the tag names. 
 #ansible-playbook tags_test.yml --tags first,fourth 
+#ansible-playbook tags_test.yml --list-tags
