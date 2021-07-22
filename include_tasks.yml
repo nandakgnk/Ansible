@@ -23,6 +23,18 @@
       when: ansible_os_family=="RedHat"
 [knanda@server-8-knanda include_taks]$ ansible-playbook install_include.yml
 
+##########################
+
+
+[knanda@server-8-knanda include_taks]$ cat install_include.yml
+---
+- hosts: localhost
+  gather_facts: true
+  become: yes
+  tasks:
+    - include_tasks: install_vsftpd_{{ ansible_os_family }}.yml
+    - import_tasks:  install_httpd_{{ ansible_os_family }}.yml
+     
 ##################
 Ansible reusable concept with import and include 
 
