@@ -1,0 +1,34 @@
+[knanda@server-8-knanda include_taks]$ cat install_httpd.yml
+---
+ - name: To install httpd
+   yum:
+     name: httpd
+     state: latest
+[knanda@server-8-knanda include_taks]$ cat install_vsftpd.yml
+---
+ - name: install vsftpd
+   yum:
+     name: vsftpd
+     state: latest
+
+[knanda@server-8-knanda include_taks]$ cat install_include.yml
+---
+- hosts: localhost
+  gather_facts: true
+  become: yes
+  tasks:
+    - import_tasks: install_vsftpd.yml
+      when: ansible_os_family=="RedHat"
+    - import_tasks:  install_httpd.yml
+      when: ansible_os_family=="RedHat"
+[knanda@server-8-knanda include_taks]$ ansible-playbook install_include.yml
+
+##################
+Ansible reusable concept with import and include 
+
+> All import* statments are pre-processed at the time playbooks are parsed. 
+> All include* statements are processed as they encountered during the execution of the playbook.
+> So import is status, and include is dynamic( If any variables in the statement , import task can't execute it.)
+> Ansible has following modules for import and include: 
+   > import_playbook, import_tasks, import_vars, import_role
+   >include_playbook, include_tasks, include_vars, include_role
