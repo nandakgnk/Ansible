@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - block: 
+    - name: Finding files in /var/opt/tomcat8
+      command: "ls /var/opt/tomcat8"
+      register: tomcat_8
+    rescue: 
+        #This part only executes when the actually block has some exception
+      - debug: 
+           msg: "The Given path: /var/opt/tomcat8 is not a vailid path"
+    finally: 
+      - debug: 
+          msg: "This part of code will always execute"   
+          
+          
