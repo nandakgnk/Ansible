@@ -3,10 +3,10 @@
 ---
 - hosts: all
   become: yes
-  become_method: sudo
-  connection: ssh
+#  become_method: sudo
+#  connection: ssh
   gather_facts: yes
-  remote_user: root
+#  remote_user: root
   tasks:
   - name: "add user"
     user:
