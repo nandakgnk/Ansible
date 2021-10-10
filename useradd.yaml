@@ -17,5 +17,4 @@
       create_home: yes
       home: /home/nanda
       groups:
-         - sudo
-         - docker
+         - knanda
