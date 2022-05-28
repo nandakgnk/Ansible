@@ -1,4 +1,4 @@
-#adding new commit to the file
+#Add new line for the demo purpose
 #ansible all -m ping 
 #ansible all -m ping -i inventory
 ####Diable Host checking
