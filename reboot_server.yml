@@ -1,8 +1,8 @@
 ---
-- name: Linux Reboot Demo
-  hosts: rhel7-base
+- name: Linux hosts restart
+  hosts: all
   gather_facts: no
-  remote_user: devops
+  remote_user: ec2-user
   become: true
   tasks: 
     - name: Check if a reboot is needed on AWS EC2 Ubuntu/Debian based servers
@@ -21,3 +21,5 @@
    
     - name: Executing uptime to ensure the restart
       command: uptime
+      
+   #ansible-playbook <script> 
