@@ -5,7 +5,7 @@
   remote_user: ec2-user
   become: true
   tasks: 
-    - name: Check if a reboot is needed on AWS EC2 Ubuntu/Debian based servers
+    - name: Check if a reboot is needed on AWS EC2 based servers
       register: reboot_required_file
       stat: path=/var/run/reboot-required get_md5=no
      
