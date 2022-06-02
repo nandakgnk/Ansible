@@ -11,7 +11,7 @@
       register: reboot_required_file
       stat: path=/var/run/reboot-required get_md5=no
     
-    - Executing uptime before restart
+    - name: Executing uptime before restart
       command: uptime
      
     - name: Reboot the box if kernel updated/installed on EC2 
