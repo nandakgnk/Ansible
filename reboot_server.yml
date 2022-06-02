@@ -3,6 +3,8 @@
   hosts: all
   gather_facts: no
   remote_user: ec2-user
+  serial: 1
+  max_fail_percentage: 10
   become: true
   tasks: 
     - name: Check if a reboot is needed on AWS EC2 based servers
